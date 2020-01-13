@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "removeComments": true,
+      "target": "es5",
+      "sourceMap": false,
+      "lib": ["ES2015", "ES2015.Promise", "ES2017"],
+      "moduleResolution": "node",
+      "allowJs": true,
+      "noEmit": true,
+      "downlevelIteration": true,
+      "isolatedModules": false,
+      "esModuleInterop": true,
+      "strict": true,
+      "outDir": "./dist",
+      "typeRoots": [
+        "./node_modules/@types",
+        "@types/**/*"
+      ],
+    },
+  }

@@ -1,7 +1,7 @@
 /*
  * @Author:  hAo
  * @Date: 2020-01-08 22:01:37
- * @LastEditTime : 2020-01-13 17:42:11
+ * @LastEditTime : 2020-01-14 17:31:25
  * @LastEditors  : hAo
  * @Description:  核心类
  * @FilePath: /counselor-react/wec-counselor-attendance-apps/src/utils/hao-http/core.ts
@@ -9,7 +9,8 @@
 import Axios, {
   AxiosRequestConfig,
   CancelTokenStatic,
-  AxiosInstance
+  AxiosInstance,
+  Canceler
 } from "axios";
 
 import { genConfig } from "./config";
@@ -102,8 +103,8 @@ class HaoBaseHttp {
     this.sourceTokenList =
       this.sourceTokenList.length < 1
         ? this.sourceTokenList.filter(
-            cancelToken => cancelToken.cancelKey !== cancelKey
-          )
+          cancelToken => cancelToken.cancelKey !== cancelKey
+        )
         : [];
   }
 
@@ -119,7 +120,7 @@ class HaoBaseHttp {
 
         const cancelKey = this.genUniqueKey($config);
 
-        $config.cancelToken = new this.CancelToken(cancelExecutor => {
+        $config.cancelToken = new this.CancelToken((cancelExecutor: (cancel: any) => void) => {
           this.sourceTokenList.push({ cancelKey, cancelExecutor });
         });
 
@@ -236,7 +237,7 @@ class HaoBaseHttp {
     return new Promise((resolve, reject) => {
       HaoBaseHttp.axiosInstance
         .request(config)
-        .then(response => {
+        .then((response: HaoBaseHttpResoponse) => {
           resolve(response.data);
         })
         .catch((error: any) => {
@@ -253,7 +254,13 @@ class HaoBaseHttp {
     return this.request<T>("post", url, params, config);
   }
 
-  // public get(): void {}
+  public get<T>(
+    url: string,
+    params?: T,
+    config?: HaoBaseHttpRequestConfig
+  ): Promise<T> {
+    return this.request<T>("get", url, params, config);
+  }
 
   /**
    * 注入初始化配置

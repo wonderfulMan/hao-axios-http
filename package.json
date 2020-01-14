@@ -1,6 +1,6 @@
 {
   "name": "hao-axios-http",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./src/lib/index.ts",
   "types": "./src/lib/types.d.ts",
   "repository": "git@github.com:wonderfulMan/hao-axios-http.git",
@@ -10,8 +10,8 @@
     "build": "./node_modules/typescript/bin/tsc -w"
   },
   "dependencies": {
+    "await-to-js": "^2.1.1",
     "axios": "^0.19.1",
-    "typescript": "^3.7.4",
-    "await-to-js": "^2.1.1"
+    "typescript": "^3.7.4"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "hao-axios-http",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "./src/lib/index.ts",
   "types": "./src/lib/types.d.ts",
   "repository": "git@github.com:wonderfulMan/hao-axios-http.git",
